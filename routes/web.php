@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(PageController::class)->group(function(){
     Route::get('', 'welcome')->name('welcome');
-    Route::get('main', 'main')->name('main');
 });
 
 Route::controller(LoginController::class)->group(function(){
@@ -33,6 +32,7 @@ Route::controller(RegisterController::class)->group(function(){
 });
 
 Route::middleware('auth')->group(function(){
+    Route::get('main', [PageController::class, 'main'])->name('main');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::controller(MahasiswaController::class)->prefix('mahasiswa')->group(function(){
